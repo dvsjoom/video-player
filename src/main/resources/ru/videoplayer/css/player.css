@@ -1,0 +1,26 @@
+.root {
+    -fx-background-color: #181818;
+}
+
+.menu-bar {
+    -fx-padding: 10;
+    -fx-background-color: #222222;
+}
+
+.video-container {
+    -fx-background-color: black;
+}
+
+.placeholder-text {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-size: 20px;
+}
+
+.controls {
+    -fx-padding: 10;
+    -fx-background-color: #222222;
+}
+
+.button {
+    -fx-cursor: hand;
+}
