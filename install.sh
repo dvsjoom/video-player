@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e
+
+echo "Проверка операционной системы..."
+
+if [ -f /etc/debian_version ]; then
+    PM="apt"
+    UPDATE_CMD="sudo apt update"
+    INSTALL_CMD="sudo apt install -y default-jdk maven"
+elif [ -f /etc/redhat-release ] || [ -f /etc/fedora-release ]; then
+    PM="dnf"
+    UPDATE_CMD="echo 'Обновление репозиториев dnf...'"
+    INSTALL_CMD="sudo dnf install -y java-latest-openjdk-devel maven"
+elif [ -f /etc/arch-release ]; then
+    PM="pacman"
+    UPDATE_CMD="sudo pacman -Syy"
+    INSTALL_CMD="sudo pacman -S --noconfirm jdk-openjdk maven"
+else
+    echo "Ошибка: Не удалось определить дистрибутив (поддерживаются Ubuntu/Debian, Fedora/RHEL, Arch Linux)"
+    exit 1
+fi
+
+echo "Обнаружен пакетный менеджер: $PM"
+
+
+echo "Обновление индексов пакетов..."
+eval "$UPDATE_CMD"
+
+echo "Установка JDK и Maven..."
+eval "$INSTALL_CMD"
+
+echo "Проверка установленных версий:"
+java -version
+mvn -version
+
+echo "Установка успешно завершена!"
