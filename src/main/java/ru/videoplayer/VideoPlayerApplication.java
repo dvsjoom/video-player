@@ -18,6 +18,8 @@ public class VideoPlayerApplication extends Application {
         stage.setTitle("Видеоплеер");
         stage.setScene(scene);
         stage.show();
+        stage.setMinWidth(400);
+        stage.setMinHeight(300);
     }
 
 

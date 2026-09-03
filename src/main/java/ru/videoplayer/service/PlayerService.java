@@ -39,4 +39,16 @@ public class PlayerService {
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
+
+    public void setVolume(double volume) {
+        if (mediaPlayer != null) {
+            mediaPlayer.setVolume(volume);
+        }
+    }
+
+    public void setOnReady(Runnable action) {
+        if (mediaPlayer != null) {
+            mediaPlayer.setOnReady(action::run);
+        }
+    }
 }

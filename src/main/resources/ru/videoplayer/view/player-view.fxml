@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.media.MediaView?>
-<BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/21"
             fx:controller="ru.videoplayer.controller.PlayerController">
 
     <top>
@@ -21,16 +15,24 @@
     </top>
 
     <center>
-        <StackPane styleClass="video-container">
+        <StackPane fx:id="videoContainer"
+                   styleClass="video-container">
+
             <MediaView fx:id="mediaView"
                        preserveRatio="true"/>
+
+            <Label fx:id="placeholderLabel"
+                   text="No video loaded"
+                   styleClass="placeholder-text"/>
+
         </StackPane>
     </center>
 
     <bottom>
-        <VBox spacing="10" styleClass="controls">
+        <VBox spacing="8" styleClass="controls">
 
-            <Slider min="0"
+            <Slider fx:id="progressSlider"
+                    min="0"
                     max="100"
                     value="0"/>
 
@@ -44,11 +46,16 @@
                         onAction="#pause"/>
                 <Button text="⏹"
                         onAction="#stop"/>
-                <Button text="⏭"/>
 
-                <Label text="00:00 / 00:00"/>
+                <Label fx:id="timeLabel"
+                       text="00:00 / 00:00"/>
 
-                <Slider min="0"
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label text="🔊"/>
+
+                <Slider fx:id="volumeSlider"
+                        min="0"
                         max="1"
                         value="0.5"
                         prefWidth="120"/>
